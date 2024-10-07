@@ -1,0 +1,81 @@
+name: ecommerce
+description: "A new Flutter project."
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.6 <4.0.0'
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.2
+  flutter_svg: ^2.0.10+1
+  font_awesome_flutter: ^10.7.0
+  go_router: ^14.2.3
+  otp_text_field: ^1.1.3
+  firebase_core: ^3.6.0
+  cloud_firestore: ^5.4.4
+  firebase_storage: ^12.3.2
+  firebase_messaging: ^15.1.3
+  firebase_auth: ^5.3.1
+  google_sign_in: ^6.2.1
+  flutter_bloc: ^8.1.6
+  dio: ^5.6.0
+  image_picker: ^1.1.2
+  flutter_email_sender: ^6.0.3
+  email_otp: ^3.0.2
+  firebase_app_check: ^0.3.1+3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^2.0.0
+
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/svgs/
+    - assets/images/
+#    - assets/Nike_Logo.svg
+#    - assets/Nike.svg
+##    - assets/onboard_screen1.svg
+##    - assets/onboard_screen2.svg
+##    - assets/onboard_screen3.svg
+#    - assets/onboard_screen1.png
+#    - assets/onboard_screen2.png
+#    - assets/onboard_screen3.png
+#    - assets/google_icon.svg
+#    - assets/email.svg
+#    - assets/side_panel.svg
+#    - assets/shopping_bag.svg
+#    - assets/search.svg
+#    - assets/sliders.svg
+#    - assets/popular_shoe1.svg
+#    - assets/new_arrival_shoe.svg
+#    - assets/home.svg
+#    - assets/heart.svg
+#    - assets/notification.svg
+#    - assets/profile.svg
+
+  fonts:
+    - family: RalewaySemiBold
+      fonts:
+        - asset: assets/fonts/Raleway-SemiBold.ttf
+    - family: RalewayBold
+      fonts:
+        - asset: assets/fonts/Raleway-Bold.ttf
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf

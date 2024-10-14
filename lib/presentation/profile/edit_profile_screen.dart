@@ -46,9 +46,9 @@ class EditProfileScreen extends StatelessWidget {
                     if (state is UserLoaded) {
                       // Initialize controllers with the current user data
                       profilePicture = state.profilePicture;
-                      firstNameController.text = state.firstName ?? '';
-                      lastNameController.text = state.lastName ?? '';
-                      locationController.text = state.location ?? '';
+                      firstNameController.text = state.firstName!;
+                      lastNameController.text = state.lastName!;
+                      locationController.text = state.location!;
 
                       return Column(
                         children: [
@@ -121,7 +121,12 @@ class EditProfileScreen extends StatelessWidget {
                       return const Center(
                           child: Text('Error loading user data.'));
                     } else {
-                      return Container();
+                      return const Column(
+                        children: [
+                          Center(
+                          child: CircularProgressIndicator(),)
+                        ],
+                      );
                     }
                   },
                 ),
@@ -145,6 +150,7 @@ class ProfilePicEditor extends StatelessWidget {
   final Size screenSize;
   final String username;
   final BuildContext context;
+
 // Moved pickedImage here to hold the selected image
   Future<void> onProfileTapped() async {
     final ImagePicker picker = ImagePicker();
@@ -161,7 +167,9 @@ class ProfilePicEditor extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ProfilePicture(screenSize: screenSize),
+        ProfilePicture(screenSize: screenSize,
+          profilePicture: profilePicture,
+        ),
         const SizedBox(
           height: 10,
         ),
@@ -180,8 +188,9 @@ class ProfilePicEditor extends StatelessWidget {
 }
 
 class ProfilePicture extends StatelessWidget {
-  const ProfilePicture({super.key, required this.screenSize});
+  const ProfilePicture({super.key, required this.screenSize, this.profilePicture});
   final Size screenSize;
+  final Uint8List? profilePicture;
   @override
   Widget build(BuildContext context) {
     return Column(

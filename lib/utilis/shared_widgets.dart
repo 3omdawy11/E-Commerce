@@ -128,7 +128,6 @@ class ObscureCustomTextField extends StatelessWidget {
     required this.fieldHint,
     required this.screenSize,
     this.textEditingController, // Pass the notifier from the parent widget
-
   });
 
   @override
@@ -385,10 +384,15 @@ class ScreenManagerLayout extends StatelessWidget {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.miniCenterDocked,
           floatingActionButton: FloatingActionButton(
-            backgroundColor: CustomColors.white,
-            onPressed: () {},
+            backgroundColor: CustomColors.blue,
+            onPressed: () {
+              GoRouter.of(context).push(AppRouter.kShoppingCartScreen);
+            },
             shape: const CircleBorder(),
-            child: SvgPicture.asset('assets/svgs/shopping_bag.svg'),
+            child: SvgPicture.asset(
+              'assets/svgs/shopping_bag.svg',
+              color: CustomColors.white,
+            ),
           ),
           bottomNavigationBar: const CustomNavigationBar(),
           drawer: CustomDrawer(screenSize: screenSize),

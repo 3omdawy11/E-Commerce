@@ -38,6 +38,7 @@ class ProfileScreen extends StatelessWidget {
                       children: [
                         ProfilePicture(
                           screenSize: screenSize,
+                          profilePicture: state.profilePicture,
                         ),
                         Positioned(
                           bottom: 5,

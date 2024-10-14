@@ -70,12 +70,13 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
           print(userData['username']);
           print(userData['email']);
           print(profilePicture);
+          print("User Loaded Emitted");
 
           emit(
             UserLoaded(
-              username: userData['firstName'],
+              username: userData['username'],
               email: userData['email'],
-              firstName: userData['lastName'] ?? '',
+              firstName: userData['firstName'] ?? '',
               lastName: userData['lastName'] ?? '',
               location: userData['location'] ?? '',
               profilePicture: profilePicture,
@@ -83,9 +84,11 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
           );
           print("User Loaded Emitted");
         } else {
+          print("User is not loaded");
           emit(UserLoadFail("User data not found in the database."));
         }
       } catch (e) {
+        print("User is not loaded in catch");
         emit(UserLoadFail("Failed to load user data: ${e.toString()}"));
       }
     });

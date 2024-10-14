@@ -1,4 +1,5 @@
 import 'package:ecommerce/manager/user_details/user_details_bloc.dart';
+import 'package:ecommerce/presentation/profile/edit_profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +23,8 @@ class CustomDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Function()> actions = [
       () {
-      GoRouter.of(context).pop();
-      context.read<ScreenBloc>().add(ScreenIndexChanged(3));
+        GoRouter.of(context).pop();
+        context.read<ScreenBloc>().add(ScreenIndexChanged(3));
       },
       () {
         GoRouter.of(context).pop();
@@ -57,6 +58,7 @@ class CustomDrawer extends StatelessWidget {
         child: BlocBuilder<UserDetailsBloc, UserDetailsState>(
           builder: (context, state) {
             if (state is UserLoaded) {
+              print('Drawer Loaded');
               return Container(
                 margin: EdgeInsets.symmetric(
                     vertical: screenSize.height *
@@ -65,15 +67,20 @@ class CustomDrawer extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    state.profilePicture != null
+                        ? ProfilePicture(
+                      screenSize: screenSize,
+                      profilePicture: state.profilePicture,
+                    ) :
                     CircleAvatar(
                       backgroundColor: CustomColors.white,
                       radius: screenSize.width * 0.12,
                       child: SvgPicture.asset(
-                        'assets/svgs/profile.svg',
-                        fit: BoxFit.cover,
-                        height: screenSize.width *
-                            0.2, // Adjusted to be proportional to screen width
-                      ),
+                              'assets/svgs/profile.svg',
+                              fit: BoxFit.cover,
+                              height: screenSize.width *
+                                  0.2, // Adjusted to be proportional to screen width
+                            ),
                     ),
                     const SizedBox(height: 20),
                     Text(
@@ -112,10 +119,9 @@ class CustomDrawer extends StatelessWidget {
                 ),
               );
             }
+            print('Drawer not Loaded');
             return Center(
-              child: GestureDetector(
-                  onTap: actions[6],
-                  child: Text('Log out')),
+              child: GestureDetector(onTap: actions[6], child: Text('Log out')),
             );
           },
         ),

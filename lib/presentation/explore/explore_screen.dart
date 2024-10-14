@@ -1,11 +1,13 @@
 import 'package:ecommerce/presentation/explore/widgets/custom_tab.dart';
 import 'package:ecommerce/presentation/explore/widgets/popular_shoes_container.dart';
+import 'package:ecommerce/utilis/app_router.dart';
 import 'package:ecommerce/utilis/colors.dart';
 import 'package:ecommerce/utilis/fonts.dart';
 import 'package:ecommerce/utilis/shared_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class ExploreScreen extends StatelessWidget {
   const ExploreScreen(
@@ -37,7 +39,9 @@ class ExploreScreen extends StatelessWidget {
             'assets/svgs/shopping_bag.svg',
             height: screenSize.height * 0.03,
           ),
-          rightIconAction: () {},
+          rightIconAction: () {
+            GoRouter.of(context).push(AppRouter.kShoppingCartScreen);
+          },
         ),
         SizedBox(
           height: screenSize.height * 0.02,

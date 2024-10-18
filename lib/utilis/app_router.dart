@@ -8,6 +8,7 @@ import 'package:ecommerce/presentation/forget_password/otp_verification_screen.d
 import 'package:ecommerce/presentation/profile/edit_profile_screen.dart';
 import 'package:ecommerce/presentation/register/register_screen.dart';
 import 'package:ecommerce/presentation/screen_manager/screen_manager.dart';
+import 'package:ecommerce/presentation/shopping_cart/payment_screen.dart';
 import 'package:ecommerce/presentation/shopping_cart/shopping_cart_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -25,6 +26,7 @@ abstract class AppRouter {
   static const kChangePasswordScreen = '/ChangePasswordScreen';
   static const kGetUsernameScreen = '/GetUsernameScreen';
   static const kShoppingCartScreen = '/ShoppingCartScreen';
+  static const kPaymentScreen = '/PaymentScreen';
 
 
   static final GoRouter router = GoRouter(
@@ -72,6 +74,10 @@ abstract class AppRouter {
       GoRoute(
         path: kShoppingCartScreen,
         builder: (context, state) => const ShoppingCartScreen(),
+      ),
+      GoRoute(
+        path: kPaymentScreen,
+        builder: (context, state) => const PaymentScreen(),
       ),
     ],
   );

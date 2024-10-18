@@ -1,5 +1,4 @@
-import 'dart:math';
-
+import 'package:ecommerce/utilis/app_router.dart';
 import 'package:ecommerce/utilis/colors.dart';
 import 'package:ecommerce/utilis/fonts.dart';
 import 'package:ecommerce/utilis/shared_widgets.dart';
@@ -155,53 +154,9 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                 },
               ),
             ),
-            Container(
-              height: screenSize.height * 0.28,
-              color: CustomColors.white,
-              child: Container(
-                margin: const EdgeInsets.only(top: 15, left: 25, right: 25),
-                child: Column(
-                  children: [
-                    ReceiptLine(
-                      label: 'Subtotal',
-                      cost: '\$753.95',
-                      labelColor: CustomColors.grey,
-                      screenSize: screenSize,
-                    ),
-                    ReceiptLine(
-                      label: 'Delivery',
-                      cost: '\$60.20',
-                      labelColor: CustomColors.grey,
-                      screenSize: screenSize,
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    const DottedLine(
-                      lineThickness: 3,
-                      dashLength: 8,
-                      dashGapLength: 5,
-                      dashColor: Colors.grey,
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    ReceiptLine(
-                      label: 'Subtotal',
-                      cost: '\$814.15',
-                      costColor: CustomColors.blue,
-                      screenSize: screenSize,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    ActionButton(
-                        screenSize: screenSize,
-                        message: 'Checkout',
-                        action: () {})
-                  ],
-                ),
-              ),
+            ReceiptContainer(
+              screenSize: screenSize,
+              navigateTo: () => GoRouter.of(context).push(AppRouter.kPaymentScreen),
             ),
           ],
         ),
@@ -262,7 +217,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
     return GestureDetector(
       onTap: () => _deleteShoe(index),
       child: Container(
-        height: screenSize.height * 0.125,
+        height: screenSize.height * 0.14,
         width: 70,
         decoration: BoxDecoration(
           color: Colors.red,
@@ -300,6 +255,66 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
   }
 }
 
+class ReceiptContainer extends StatelessWidget {
+  const ReceiptContainer(
+      {super.key, required this.screenSize, required this.navigateTo});
+
+  final Size screenSize;
+  final Function() navigateTo;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: screenSize.height * 0.28,
+      color: CustomColors.white,
+      child: Container(
+        margin: const EdgeInsets.only(top: 15, left: 25, right: 25),
+        child: Column(
+          children: [
+            ReceiptLine(
+              label: 'Subtotal',
+              cost: '\$753.95',
+              labelColor: CustomColors.grey,
+              screenSize: screenSize,
+            ),
+            ReceiptLine(
+              label: 'Delivery',
+              cost: '\$60.20',
+              labelColor: CustomColors.grey,
+              screenSize: screenSize,
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            const DottedLine(
+              lineThickness: 3,
+              dashLength: 8,
+              dashGapLength: 5,
+              dashColor: Colors.grey,
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            ReceiptLine(
+              label: 'Subtotal',
+              cost: '\$814.15',
+              costColor: CustomColors.blue,
+              screenSize: screenSize,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            ActionButton(
+                screenSize: screenSize,
+                message: 'Checkout',
+                action: navigateTo)
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class ReceiptLine extends StatelessWidget {
   const ReceiptLine({
     super.key,
@@ -329,7 +344,9 @@ class ReceiptLine extends StatelessWidget {
           ),
           Text(
             cost,
-            style: Fonts.paragraph.copyWith(fontSize: screenSize.height * 0.02),
+            style: Fonts.paragraph.copyWith(
+                fontSize: screenSize.height * 0.02,
+                color: costColor ?? CustomColors.black),
           )
         ],
       ),
